@@ -49,7 +49,7 @@ class Phonebook extends Component {
         <div className="container">
           {phoneBook.map(({name, phoneNumber, phoneType, id}) => (
             <div key={id}>
-              <PhoneItem name={name} phone={phoneNumber} phoneType={phoneType} />
+              <PhoneItem name={name} number={phoneNumber} phoneType={phoneType} />
             </div>
           ))}
           
