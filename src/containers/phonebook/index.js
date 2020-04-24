@@ -2,6 +2,36 @@ import React, { Component } from 'react'
 import PhoneItem from '../../components/phoneItem'
 import './phonebook.css'
 
+const phoneBook = [
+  {
+    name: "José Nunes da Silva",
+    phoneNumber: "9999-8888",
+    email: "zezin@gmail.com",
+    nickName: "Zezin",
+    id: 1
+  },
+  {
+    name: "Joao Silva Fopxs",
+    phoneNumber: "9999-7788",
+    email: "fopxs@gmail.com",
+    nickName: "Fopxs",
+    id: 2
+  },
+  {
+    name: "Ana Júlia Lopes",
+    phoneNumber: "9999-9613",
+    email: "Anaju@gmail.com",
+    nickName: "Anaju",
+    id: 3
+  },
+  {
+    name: "Mauro Luiz",
+    phoneNumber: "9999-2014",
+    email: "Maurin@gmail.com",
+    nickName: "Maurin",
+    id: 4
+  }
+]
 class Phonebook extends Component {
   render() {
     return(
@@ -13,9 +43,12 @@ class Phonebook extends Component {
           </div>
         </header>
         <div className="container">
-          <PhoneItem name={'Zezin'} phone={'9999-9999'} />
-          <PhoneItem name={'Maria'} phone={'9999-7777'} />
-          <PhoneItem name={'Nélio'} phone={'9999-5566'} />
+          {phoneBook.map(phone => (
+            <div key={phone.id}>
+              <PhoneItem name={phone.name} phone={phone.phoneNumber} />
+            </div>
+          ))}
+          
         </div>
       </div>
     )
