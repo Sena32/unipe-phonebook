@@ -1,16 +1,21 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMobileAlt, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faMobileAlt, faUser, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { Card, CardContent, CardAction } from '../cards'
 import './phoneItem.css'
 
-const PhoneItem = ({ name, phone }) => (
+const Phone = ({ type }) => {
+  if(type === 'Residencial') return <FontAwesomeIcon icon={faPhone} />
+  else return <FontAwesomeIcon icon={faMobileAlt} />
+}
+
+const PhoneItem = ({ name, phone, phoneType }) => (
   <div className="phoneContainer">
     <Card>
       <CardContent>
         <ul className="phoneItem">
-          <li><FontAwesomeIcon icon={faMobileAlt} /> {name} </li>
-          <li><FontAwesomeIcon icon={faUser} /> {phone}</li>
+          <li><FontAwesomeIcon icon={faUser} /> {name} </li>
+          <li><Phone type={phoneType} /> {phone}</li>
         </ul>
       </CardContent>
       <CardAction>
