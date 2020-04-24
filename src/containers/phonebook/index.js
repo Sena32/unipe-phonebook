@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMobileAlt, faUser } from '@fortawesome/free-solid-svg-icons'
+import PhoneItem from '../../components/phoneItem'
 import './phonebook.css'
 
 class Phonebook extends Component {
@@ -14,20 +13,9 @@ class Phonebook extends Component {
           </div>
         </header>
         <div className="container">
-          <div className="phoneContainer">
-            <div className="card">
-              <div className="card-content">
-                <ul className="phoneItem">
-                  <li><FontAwesomeIcon icon={faMobileAlt} /> Zezin</li>
-                  <li><FontAwesomeIcon icon={faUser} /> 9999-8888</li>
-                </ul>
-              </div>
-              <div className="card--actions">
-                <button className="btn btn-small">Apagar</button>
-                <button className="btn btn-small">Detalhes</button>
-              </div>
-            </div>
-          </div>
+          <PhoneItem name={'Zezin'} phone={'9999-9999'} />
+          <PhoneItem name={'Maria'} phone={'9999-7777'} />
+          <PhoneItem name={'Nélio'} phone={'9999-5566'} />
         </div>
       </div>
     )

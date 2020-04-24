@@ -1,0 +1,11 @@
+.phoneContainer{ width: 17em }
+
+.phoneItem{
+  padding: 0;
+  margin: 0;
+}
+
+.phoneItem li{
+  margin-bottom: 1em; 
+  list-style-type: none 
+}
