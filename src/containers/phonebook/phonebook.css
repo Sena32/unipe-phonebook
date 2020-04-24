@@ -1,0 +1,96 @@
+.wrapper {
+  padding: 0 5em;
+  background: #eee;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  border-top: 5px solid #ccc;
+}
+
+/*Button*/
+.header {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header h1 {
+  font-size: 2.5em; 
+  font-weight: 400;
+}
+
+/*Button*/
+.btn {
+  padding: 6px 16px;
+  font-size: 0.875rem;
+  min-width: 64px;
+  font-weight: 500;
+  line-height: 1.75;
+  border-radius: 4px;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  transition: all .5s ease;
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12);
+}
+
+.btn:hover{ background-color: #dfdfdf }
+
+.btn-small {
+  font-size: 0.675rem;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1976d2;
+}
+
+.btn-primary:hover { background-color: #1359a0 }
+
+/*card*/
+.card{
+  margin: 0 1.3em 2em 0;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12);
+}
+
+.card-content {
+  padding: 1em;
+  width: 100%;
+  min-height: 6em;
+}
+
+.card--actions{
+  border-top: 1px solid rgb(231, 230, 230);
+  display: flex;
+  padding: 8px;
+  justify-content: flex-end;
+}
+
+.card--actions button {  margin-right: .5em }
+
+/*phoneItem*/
+.phoneContainer{ width: 17em }
+
+.phoneItem{
+  padding: 0;
+  margin: 0;
+}
+
+.phoneItem li{
+  margin-bottom: 1em; 
+  list-style-type: none 
+}
+
+
+/*container*/
+.container {
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+}
+
