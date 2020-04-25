@@ -49,8 +49,20 @@ const put = (url ,payload) => {
   return data
 }
 
+const del = url => {
+  const optionsDelete = {
+    ...options,
+    method: 'DELETE',
+  }
+  
+  const data = fetchData(url, optionsDelete)
+  
+  return data
+}
+
 export default { 
   get,
   post,
-  put
+  put,
+  del
 }

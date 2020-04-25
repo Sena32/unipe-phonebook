@@ -35,6 +35,19 @@ class Phonebook extends Component {
     this.props.history.push('/new-phonebook')
   }
 
+  async handleDelete(userId) {
+    try {
+      const data = await HttpService.del(`phoneBook/${userId}`)
+      this.getPhonebookList()
+      return data
+    }catch(error){
+      console.error(error)
+    }finally{
+      this.setState({ isLoad: false })
+    }
+   
+  }
+
   componentDidMount() {
     this.getPhonebookList()
   }
@@ -59,7 +72,7 @@ class Phonebook extends Component {
                     phoneType={phoneType}
                   >
                     <CardAction>
-                      <Button size="small">Apagar</Button>
+                      <Button size="small" onClick={() => this.handleDelete(id)}>Apagar</Button>
                       <Button size="small" onClick={() => this.handleClickDetail(id)}> Detalhes</Button>
                     </CardAction>
                   </PhoneItem>
