@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Header from '../../components/header'
 import Button from '../../components/button'
 import { Card, CardContent, CardAction } from '../../components/cards'
+import { TextField } from '../../components/form'
 import HttpService from '../../utils/HttpService'
-import './newPhonebook.css'
 class NewPhonebook extends Component {
   state ={
     phonebook: {
@@ -21,11 +21,30 @@ class NewPhonebook extends Component {
     }
   }
 
+  handleClickPhonebook= () => {
+    const history = this.props.history
+    history.push('/' )
+  }
+  
   isValidateForm = () => {
     const getInput = Object.values(this.state.phonebook)
     const isValidInput = getInput.every(elem => elem !== "")
 
     return isValidInput
+  }
+
+  showErros = () => {
+    const getInputErro = this.state.phonebook
+    const entries = Object.entries(getInputErro)
+    let getErros = {}
+    for(const[key, values] of entries) {
+      if(values==="") getErros[key] = true
+      else getErros[key] = false
+    }
+
+    this.setState({
+      erros: getErros
+    })
   }
 
   handleChange = event => {
@@ -38,89 +57,70 @@ class NewPhonebook extends Component {
   } 
   
   sendData = async payload => {
-    const data = await payload
-
-    return HttpService.post(data)
+    try {
+      const data = await payload
+      return HttpService.post(data)
+    } catch(error) {
+      console.error(error)
+    } finally {
+      alert('Contato inserido com sucesso')
+      this.props.history.push('/')
+    }
   }
 
   handleSubmit = evento => {
     evento.preventDefault()
     const isValidForm = this.isValidateForm()
     if(isValidForm) this.sendData(this.state.phonebook)
-
-    else return false
+    else {
+      this.showErros()
+      return false
+    }
   }
 
   render() {
     return(
       <>
         <Header>
-          <Button variant='primary'>Agenda Telefônica</Button> 
+          <Button variant='primary' onClick={() => this.handleClickPhonebook()}>Agenda Telefônica</Button> 
         </Header>
         <Card>
           <form onSubmit={this.handleSubmit}>
             <CardContent>
-              <label className="text-field">
-                <span>Nome</span>
-                <input 
-                  type="text" 
-                  placeholder="Nome" 
-                  name="name"
-                  onChange={this.handleChange} 
-                  value={this.state.name} 
-                />
-                {this.state.erros.name &&
-                  <div className="erros">O Campo Nome é Obrigatório</div>
-                }
-                
-              </label>
-             
-              <label className="text-field">
-                <span>Apelido</span>
-                <input 
-                  type="text"
-                  placeholder="Apelido"
-                  name="nickName"
-                  onChange={this.handleChange}
-                  value={this.state.nickName} 
-                />
-                 {this.state.erros.nickName &&
-                  <div className="erros">O Campo Apelido é Obrigatório</div>
-                 }
-              </label>
+              <TextField 
+                label="Nome"
+                name="name"
+                onChange={this.handleChange}
+                value={this.state.phonebook.name}
+                erros={this.state.erros.name}
+              />
+              <TextField 
+                label="Apelido"
+                name="nickName"
+                onChange={this.handleChange}
+                value={this.state.phonebook.nickName}
+                erros={this.state.erros.nickName}
+              />
+              <TextField 
+                label="Email"
+                name="email"
+                onChange={this.handleChange}
+                value={this.state.phonebook.email}
+                erros={this.state.erros.email}
+              />
 
-              <label className="text-field">
-                <span>Email</span>
-                <input 
-                  type="email"
-                  placeholder="Email"
-                  name="email"
-                  onChange={this.handleChange}
-                  value={this.state.email}
-                />
-                {this.state.erros.email &&
-                  <div className="erros">O Campo Email é Obrigatório</div>
-                 }
-              </label>
-
-              <label className="text-field">
-                <span>Telefone</span>
-                <input type="text"
-                  placeholder="Telefone"
-                  name="phoneNumber"
-                  onChange={this.handleChange}
-                  value={this.state.phoneNumber}
-                />
-                 {this.state.erros.phoneNumber &&
-                  <div className="erros">O Campo Telefone é Obrigatório</div>
-                 }
-              </label>
-
+              <TextField 
+                label="Telefone"
+                name="phoneNumber"
+                onChange={this.handleChange}
+                value={this.state.phonebook.phoneNumber}
+                erros={this.state.erros.phoneNumber}
+              />
               <label className="text-field">
                 Tipo de telefone
                 <select name="phoneType"
                     onChange={this.handleChange}
-                    value={this.state.phoneType}
+                    value={this.state.phonebook.phoneType}
                 >
                   <option>Residencial</option>
                   <option>Celular</option>

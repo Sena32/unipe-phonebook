@@ -55,6 +55,46 @@
       "phoneNumber": "",
       "phoneType": "Residencial",
       "id": 7
+    },
+    {
+      "name": "Nélio Frazão Chaves",
+      "nickName": "sfsdfds",
+      "email": "neliofrazac@gmail.com",
+      "phoneNumber": "83993127993",
+      "phoneType": "Residencial",
+      "id": 8
+    },
+    {
+      "name": "Nélio Frazão Chaves",
+      "nickName": "Zezin",
+      "email": "neliofrazac@gmail.com",
+      "phoneNumber": "83993127993",
+      "phoneType": "Residencial",
+      "id": 9
+    },
+    {
+      "name": "Jose Almeida",
+      "nickName": "José",
+      "email": "zw@email.com",
+      "phoneNumber": "9999-99123",
+      "phoneType": "Residencial",
+      "id": 10
+    },
+    {
+      "name": "Nélio Frazão Chaves",
+      "nickName": "sfsdfds",
+      "email": "neliofrazac@gmail.com",
+      "phoneNumber": "83993127993",
+      "phoneType": "Celular",
+      "id": 11
+    },
+    {
+      "name": "Eu",
+      "nickName": "tu",
+      "email": "ele@gmiail.com",
+      "phoneNumber": "22233345",
+      "phoneType": "Residencial",
+      "id": 12
     }
   ]
 }
