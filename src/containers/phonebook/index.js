@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PhoneItem from '../../components/phoneItem'
 import HttpService from '../../utils/HttpService'
+import Header from '../../components/header'
 import Load from '../../components/load'
+import Button from '../../components/button'
 import './phonebook.css'
 
 class Phonebook extends Component {
@@ -15,7 +17,6 @@ class Phonebook extends Component {
     try {
       const data = await HttpService.get('http://localhost:4000/phoneBook')
       this.setState({ phoneBook: data })
-      console.log(data)
     } catch (error) {
       console.error(error)
     } finally {
@@ -36,22 +37,18 @@ class Phonebook extends Component {
         {this.state.isLoad ? (
           <Load />
         ) : (
-          <div className="wrapper">
-            <header className="header">
-              <h1>Phonebook</h1>
-              <div>
-                <button className="btn btn-primary">Novo Contato</button>
-              </div>
-            </header>
+          <>
+            <Header>
+              <Button variant='primary' size="small">Novo Contato</Button> 
+            </Header>
             <div className="container">
               {this.state.phoneBook.map(({name, phoneNumber, phoneType, id}) => (
                 <div key={id}>
                   <PhoneItem name={name} number={phoneNumber} phoneType={phoneType} />
                 </div>
               ))}
-              
-            </div>
-        </div>
+           </div>
+          </>
         )}
       </>
     )
