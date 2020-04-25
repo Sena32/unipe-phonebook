@@ -31,6 +31,30 @@
       "email": "Maurin@gmail.com",
       "nickName": "Maurin",
       "id": 4
+    },
+    {
+      "name": "Nélio Frazão Chaves",
+      "nickName": "sadadd",
+      "email": "neliofrazac@gmail.com",
+      "phoneNumber": "83993127993",
+      "phoneType": "Celular",
+      "id": 5
+    },
+    {
+      "name": "",
+      "nickName": "",
+      "email": "",
+      "phoneNumber": "",
+      "phoneType": "Residencial",
+      "id": 6
+    },
+    {
+      "name": "",
+      "nickName": "",
+      "email": "",
+      "phoneNumber": "",
+      "phoneType": "Residencial",
+      "id": 7
     }
   ]
 }

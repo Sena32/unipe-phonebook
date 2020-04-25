@@ -27,4 +27,18 @@ const get = url => {
   return data
 }
 
-export default { get }
+const post = payload => {
+  const optionsPost = {
+    ...options,
+    method: 'POST',
+    body: JSON.stringify(payload)
+  }
+  const data = fetchData('phoneBook', optionsPost)
+
+  return data
+}
+
+export default { 
+  get,
+  post
+}

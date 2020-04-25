@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import Header from '../../components/header'
 import Button from '../../components/button'
 import { Card, CardContent, CardAction } from '../../components/cards'
+import HttpService from '../../utils/HttpService'
 import './newPhonebook.css'
-
 class NewPhonebook extends Component {
   state ={
     phonebook: {
@@ -12,7 +12,20 @@ class NewPhonebook extends Component {
       email: '',
       phoneNumber: '',
       phoneType: 'Residencial'
+    },
+    erros: {
+      name: false,
+      nickName: false,
+      email: false,
+      phoneNumber: false,
     }
+  }
+
+  isValidateForm = () => {
+    const getInput = Object.values(this.state.phonebook)
+    const isValidInput = getInput.every(elem => elem !== "")
+
+    return isValidInput
   }
 
   handleChange = event => {
@@ -24,15 +37,28 @@ class NewPhonebook extends Component {
      })
   } 
   
+  sendData = async payload => {
+    const data = await payload
+
+    return HttpService.post(data)
+  }
+
+  handleSubmit = evento => {
+    evento.preventDefault()
+    const isValidForm = this.isValidateForm()
+    if(isValidForm) this.sendData(this.state.phonebook)
+
+    else return false
+  }
+
   render() {
     return(
       <>
-        {console.log(this.state.phonebook)}
         <Header>
           <Button variant='primary'>Agenda Telefônica</Button> 
         </Header>
         <Card>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <CardContent>
               <label className="text-field">
                 <span>Nome</span>
@@ -43,6 +69,10 @@ class NewPhonebook extends Component {
                   onChange={this.handleChange} 
                   value={this.state.name} 
                 />
+                {this.state.erros.name &&
+                  <div className="erros">O Campo Nome é Obrigatório</div>
+                }
+                
               </label>
              
               <label className="text-field">
@@ -54,6 +84,9 @@ class NewPhonebook extends Component {
                   onChange={this.handleChange}
                   value={this.state.nickName} 
                 />
+                 {this.state.erros.nickName &&
+                  <div className="erros">O Campo Apelido é Obrigatório</div>
+                 }
               </label>
 
               <label className="text-field">
@@ -65,6 +98,9 @@ class NewPhonebook extends Component {
                   onChange={this.handleChange}
                   value={this.state.email}
                 />
+                {this.state.erros.email &&
+                  <div className="erros">O Campo Email é Obrigatório</div>
+                 }
               </label>
 
               <label className="text-field">
@@ -75,9 +111,12 @@ class NewPhonebook extends Component {
                   onChange={this.handleChange}
                   value={this.state.phoneNumber}
                 />
+                 {this.state.erros.phoneNumber &&
+                  <div className="erros">O Campo Telefone é Obrigatório</div>
+                 }
               </label>
 
-              <label>
+              <label className="text-field">
                 Tipo de telefone
                 <select name="phoneType"
                     onChange={this.handleChange}
