@@ -31,6 +31,10 @@ class Phonebook extends Component {
     this.props.history.push(`/phonebook-detail/${id}`)
   }
 
+  handleClickNewPhonebook() {
+    this.props.history.push('/new-phonebook')
+  }
+
   componentDidMount() {
     this.getPhonebookList()
   }
@@ -42,9 +46,8 @@ class Phonebook extends Component {
           <Load />
         ) : (
           <>
-            {console.log(this.props)}
             <Header>
-              <Button variant='primary'>Novo Contato</Button> 
+              <Button variant='primary' onClick={() => this.handleClickNewPhonebook()}>Novo Contato</Button> 
             </Header>
             <div className="container">
               {this.state.phoneBook.map(({name, phoneNumber, email, phoneType, id}) => (

@@ -17,6 +17,10 @@ class PhonebookDetail extends Component {
     this.props.history.push('/')
   }
 
+  handleClickNewPhonebook() {
+    this.props.history.push('/new-phonebook')
+  }
+
   async getUserData() {
     try {
       const data = await HttpService.get(`phonebook/${this.props.match.params.phoneId}`)
@@ -44,7 +48,7 @@ class PhonebookDetail extends Component {
         ):(
           <>
           <Header title={name}>
-            <Button variant='primary'>Novo Contato</Button> 
+            <Button variant='primary' onClick={()=> this.handleClickNewPhonebook() }>Novo Contato</Button> 
           </Header>
           <PhoneItem 
             name={nickName}

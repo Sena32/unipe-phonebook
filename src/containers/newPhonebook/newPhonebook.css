@@ -1,0 +1,11 @@
+.text-field, .text-field span { display: block }
+.text-field span { padding-bottom: .5em;}
+.text-field{margin-bottom: 1em;}
+.text-field input {
+  width: 15em;
+  border: 1px solid #666;
+  padding: 0 .5em;
+  color: #666;
+  height: 2em;
+}
+.erros{ color: #7e2424 }
