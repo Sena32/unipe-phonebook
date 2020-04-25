@@ -4,7 +4,7 @@ import Button from '../../components/button'
 import { Card, CardContent, CardAction } from '../../components/cards'
 import { TextField } from '../../components/form'
 import HttpService from '../../utils/HttpService'
-class NewPhonebook extends Component {
+class PhonebookForm extends Component {
   state ={
     phonebook: {
       name: '',
@@ -55,11 +55,23 @@ class NewPhonebook extends Component {
       }
      })
   } 
+
+  hasPhoneID = () => {
+    const hasPhoneID = this.props.match.params.phoneId
+    return !!hasPhoneID
+  }
   
   sendData = async payload => {
     try {
       const data = await payload
-      return HttpService.post(data)
+      const hasPhoneId = this.hasPhoneID()
+      
+      if(hasPhoneId) {
+        return HttpService.put(`phoneBook/${this.props.match.params.phoneId}`, data)
+      } else {
+        return  HttpService.post(data) 
+      }
+      
     } catch(error) {
       console.error(error)
     } finally {
@@ -76,6 +88,18 @@ class NewPhonebook extends Component {
       this.showErros()
       return false
     }
+  }
+
+  getUserData = async () => {
+    const data = await HttpService.get(`phoneBook/${this.props.match.params.phoneId}`)
+    this.setState({
+      phonebook: data
+    })
+  }
+
+  componentDidMount() {
+    const hasPhoneId = this.hasPhoneID()
+    if(!!hasPhoneId) this.getUserData()
   }
 
   render() {
@@ -138,4 +162,4 @@ class NewPhonebook extends Component {
   }
 }
 
-export default NewPhonebook
+export default PhonebookForm

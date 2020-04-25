@@ -21,6 +21,10 @@ class PhonebookDetail extends Component {
     this.props.history.push('/new-phonebook')
   }
 
+  handleClickEdit(id) {
+    this.props.history.push(`/phonebook/${id}`)
+  }
+
   async getUserData() {
     try {
       const data = await HttpService.get(`phonebook/${this.props.match.params.phoneId}`)
@@ -40,7 +44,7 @@ class PhonebookDetail extends Component {
   }
 
   render() {
-    const {phonebook: {name, email, nickName, phoneNumber, phoneType}, isLoad} = this.state
+    const {phonebook: {id, name, email, nickName, phoneNumber, phoneType}, isLoad} = this.state
     return (
       <>
         {isLoad ? (
@@ -58,7 +62,7 @@ class PhonebookDetail extends Component {
           >
             <CardAction>
               <Button onClick={()=> this.handleClickBack()}>Voltar</Button>
-              <Button variant="primary"> Editar</Button>
+              <Button variant="primary"  onClick={()=> this.handleClickEdit(id)}> Editar</Button>
             </CardAction>
           </PhoneItem>
           </>

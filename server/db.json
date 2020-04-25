@@ -57,8 +57,8 @@
       "id": 7
     },
     {
-      "name": "Nélio Frazão Chaves",
-      "nickName": "sfsdfds",
+      "name": "Nélio Chaves2334",
+      "nickName": "Frazão",
       "email": "neliofrazac@gmail.com",
       "phoneNumber": "83993127993",
       "phoneType": "Residencial",
@@ -95,6 +95,14 @@
       "phoneNumber": "22233345",
       "phoneType": "Residencial",
       "id": 12
+    },
+    {
+      "name": "Nélio Frazão Chaves1223",
+      "nickName": "sfsdfds",
+      "email": "neliofrazac@gmail.com",
+      "phoneNumber": "83993127993",
+      "phoneType": "Celular",
+      "id": 13
     }
   ]
 }

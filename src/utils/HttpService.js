@@ -38,7 +38,19 @@ const post = payload => {
   return data
 }
 
+const put = (url ,payload) => {
+  const optionsPut = {
+    ...options,
+    method: 'PUT',
+    body: JSON.stringify(payload)
+  }
+  const data = fetchData(url, optionsPut)
+
+  return data
+}
+
 export default { 
   get,
-  post
+  post,
+  put
 }
