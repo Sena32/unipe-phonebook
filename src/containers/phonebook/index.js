@@ -3,11 +3,11 @@ import PhoneItem from '../../components/phoneItem'
 import HttpService from '../../utils/HttpService'
 import Header from '../../components/header'
 import Load from '../../components/load'
+import { CardAction } from '../../components/cards'
 import Button from '../../components/button'
 import './phonebook.css'
 
 class Phonebook extends Component {
-
   state = {
     phoneBook: [],
     isLoad: true,
@@ -15,7 +15,7 @@ class Phonebook extends Component {
 
   async getPhonebookList() {
     try {
-      const data = await HttpService.get('http://localhost:4000/phoneBook')
+      const data = await HttpService.get('phoneBook')
       this.setState({ phoneBook: data })
     } catch (error) {
       console.error(error)
@@ -25,6 +25,10 @@ class Phonebook extends Component {
         isLoad: false,
       })
     }
+  }
+
+  handleClickDetail(id) {
+    this.props.history.push(`/phonebook-detail/${id}`)
   }
 
   componentDidMount() {
@@ -38,13 +42,24 @@ class Phonebook extends Component {
           <Load />
         ) : (
           <>
+            {console.log(this.props)}
             <Header>
-              <Button variant='primary' size="small">Novo Contato</Button> 
+              <Button variant='primary'>Novo Contato</Button> 
             </Header>
             <div className="container">
-              {this.state.phoneBook.map(({name, phoneNumber, phoneType, id}) => (
+              {this.state.phoneBook.map(({name, phoneNumber, email, phoneType, id}) => (
                 <div key={id}>
-                  <PhoneItem name={name} number={phoneNumber} phoneType={phoneType} />
+                  <PhoneItem 
+                    name={name}
+                    number={phoneNumber}
+                    email={email}
+                    phoneType={phoneType}
+                  >
+                    <CardAction>
+                      <Button size="small">Apagar</Button>
+                      <Button size="small" onClick={() => this.handleClickDetail(id)}> Detalhes</Button>
+                    </CardAction>
+                  </PhoneItem>
                 </div>
               ))}
            </div>

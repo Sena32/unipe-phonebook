@@ -11,7 +11,7 @@ const App = () => (
     <Switch>
       <Wrapper>
         <Route exact path='/' component={Phonebook} />
-        <Route exact path='/phonebook-detail' component={PhonebookDetail} />
+        <Route exact path='/phonebook-detail/:phoneId' component={PhonebookDetail} />
       </Wrapper>
     </Switch>
   </Router>

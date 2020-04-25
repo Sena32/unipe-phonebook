@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMobileAlt, faUser, faPhone } from '@fortawesome/free-solid-svg-icons'
-import { Card, CardContent, CardAction } from '../cards'
+import { faMobileAlt, faUser, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { Card, CardContent } from '../cards'
 import './phoneItem.css'
 
 /* const Phone = ({ type }) => {
@@ -9,7 +9,7 @@ import './phoneItem.css'
   else return <FontAwesomeIcon icon={faMobileAlt} />
 } */
 
-const PhoneItem = ({ name, number, phoneType }) => {
+const PhoneItem = ({ name, number, email, phoneType, children }) => {
   const phone = phoneType === 'Residencial' ?
     <FontAwesomeIcon icon={faPhone} /> :
     <FontAwesomeIcon icon={faMobileAlt} />
@@ -21,12 +21,10 @@ const PhoneItem = ({ name, number, phoneType }) => {
           <ul className="phoneItem">
             <li><FontAwesomeIcon icon={faUser} /> {name} </li>
             <li>{phone} {number}</li>
+            <li><FontAwesomeIcon icon={faEnvelope} /> {email}</li>
           </ul>
         </CardContent>
-        <CardAction>
-          <button className="btn btn-small">Apagar</button>
-          <button className="btn btn-small">Detalhes</button>
-        </CardAction>
+        {children}
       </Card>
     </div>
   )
