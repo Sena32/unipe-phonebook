@@ -1,0 +1,36 @@
+{
+  "phoneBook": [
+    {
+      "name": "José Nunes da Silva",
+      "phoneNumber": "9999-8888",
+      "phoneType": "Celular",
+      "email": "zezin@gmail.com",
+      "nickName": "Zezin",
+      "id": 1
+    },
+    {
+      "name": "Joao Silva Fopxs",
+      "phoneNumber": "9999-7788",
+      "phoneType": "Celular",
+      "email": "fopxs@gmail.com",
+      "nickName": "Fopxs",
+      "id": 2
+    },
+    {
+      "name": "Ana Júlia Lopes",
+      "phoneNumber": "3322-9613",
+      "phoneType": "Residencial",
+      "email": "Anaju@gmail.com",
+      "nickName": "Anaju",
+      "id": 3
+    },
+    {
+      "name": "Mauro Luiz",
+      "phoneNumber": "3355-2014",
+      "phoneType": "Residencial",
+      "email": "Maurin@gmail.com",
+      "nickName": "Maurin",
+      "id": 4
+    }
+  ]
+}

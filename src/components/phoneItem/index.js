@@ -4,14 +4,14 @@ import { faMobileAlt, faUser, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { Card, CardContent, CardAction } from '../cards'
 import './phoneItem.css'
 
-/* const Phone = ({ type }) => {
+const Phone = ({ type }) => {
   if(type === 'Residencial') return <FontAwesomeIcon icon={faPhone} />
   else return <FontAwesomeIcon icon={faMobileAlt} />
-} */
+}
 
 const PhoneItem = ({ name, number, phoneType }) => {
-  const phone = phoneType === 'Residencial' ? 
-    <FontAwesomeIcon icon={faPhone} /> : 
+  const phone = phoneType === 'Residencial' ?
+    <FontAwesomeIcon icon={faPhone} /> :
     <FontAwesomeIcon icon={faMobileAlt} />
 
   return (
@@ -20,7 +20,7 @@ const PhoneItem = ({ name, number, phoneType }) => {
         <CardContent>
           <ul className="phoneItem">
             <li><FontAwesomeIcon icon={faUser} /> {name} </li>
-            <li>{phone} {number}</li>
+            <li>{phone} {number} <Phone type={phoneType}></Phone></li>
           </ul>
         </CardContent>
         <CardAction>
@@ -31,5 +31,4 @@ const PhoneItem = ({ name, number, phoneType }) => {
     </div>
   )
 }
-
 export default PhoneItem
