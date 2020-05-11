@@ -6,6 +6,8 @@ const Button = ({ children, variant, size, ...props}) => (
     "btn" 
     + (variant === 'primary' ? ' btn-primary' : '')
     + (size === 'small' ? ' btn-small' : '')
+    + (size === 'large' ? ' btn-large' : '')
+
     }
     {...props}
   >

@@ -1,22 +1,31 @@
 import React, { Component } from 'react'
-import PhoneItem from '../../components/phoneItem'
+import { Item, ItemPagination } from '../../components/phoneItem'
 import HttpService from '../../utils/HttpService'
+import Wrapper from '../../components/wrapper'
 import Header from '../../components/header'
 import Load from '../../components/load'
 import { CardAction } from '../../components/cards'
 import Button from '../../components/button'
+import Painel from '../../components/painel'
+import logo from '../../logo-cervejaria.svg'
+
+
 import './phonebook.css'
+
 
 class Phonebook extends Component {
   state = {
-    phoneBook: [],
+    beers: [],
     isLoad: true,
+    qtdPage:0,
   }
 
-  async getPhonebookList() {
+  async getbeersList() {
     try {
-      const data = await HttpService.get('phoneBook')
-      this.setState({ phoneBook: data })
+      const data = await HttpService.get('beers')
+      const length = data.length;
+      this.setState({ beers: data,
+      qtdPage:length })
     } catch (error) {
       console.error(error)
     } finally {
@@ -24,11 +33,12 @@ class Phonebook extends Component {
         ...this.state,
         isLoad: false,
       })
+      
     }
   }
 
   handleClickDetail(id) {
-    this.props.history.push(`/phonebook-detail/${id}`)
+    this.props.history.push(`/beers/${id}`)
   }
 
   handleClickNewPhonebook() {
@@ -49,36 +59,53 @@ class Phonebook extends Component {
   }
 
   componentDidMount() {
-    this.getPhonebookList()
+    this.getbeersList()
   }
 
   render() {
+    const  {qtdPage} = this.state
+    console.log(qtdPage)
     return(
       <>
         {this.state.isLoad ? (
           <Load />
         ) : (
           <>
+            
             <Header>
-              <Button variant='primary' onClick={() => this.handleClickNewPhonebook()}>Novo Contato</Button> 
+              <div>
+                <img src={logo} className="logo"/>
+              </div>
             </Header>
+            
+            <Painel>
+            </Painel>
+
+            <Wrapper>
             <div className="container">
-              {this.state.phoneBook.map(({name, phoneNumber, email, phoneType, id}) => (
+              {this.state.beers.map(({name, tagline, first_brewed, description,image_url, id}) => (
                 <div key={id}>
-                  <PhoneItem 
+                  <Item 
                     name={name}
-                    number={phoneNumber}
-                    email={email}
-                    phoneType={phoneType}
+                    email={tagline}
+                    urlImg={image_url}
+                    nameImg={name}
                   >
-                    <CardAction>
-                      <Button size="small" onClick={() => this.handleDelete(id)}>Apagar</Button>
-                      <Button size="small" onClick={() => this.handleClickDetail(id)}> Detalhes</Button>
+                    <CardAction variant="card--actions-overlay">
+                      <Button size="large" variant="primary" onClick={() => this.handleClickDetail(id)}> Detalhes</Button>
                     </CardAction>
-                  </PhoneItem>
+                  </Item>
                 </div>
               ))}
+
+            
            </div>
+           <ItemPagination>
+             {
+              <li><a href="#">1</a></li>
+             }
+           </ItemPagination>
+           </Wrapper>
           </>
         )}
       </>

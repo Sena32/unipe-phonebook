@@ -1,8 +1,18 @@
 .wrapper {
-  padding: 0 5em;
-  background: #eee;
-  width: 100%;
-  min-height: 100vh;
+  margin: 0 auto;
+  margin-bottom: 2em;
+  width: 80% ;
   box-sizing: border-box;
-  border-top: 5px solid #ccc;
+}
+
+.wrapper-flex{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.end{
+  margin: 0;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }

@@ -6,7 +6,7 @@ const options = {
   },
 }
 
-const BASE_URL = 'http://localhost:4000'
+const BASE_URL = 'https://api.punkapi.com/v2'
 const fetchData = (url, fetchOptions) => {
   const data = fetch(`${BASE_URL}/${url}`, fetchOptions)
   .then(response => response.json())

@@ -1,15 +1,21 @@
 import React, { Component } from 'react'
 import Header from '../../components/header'
-import PhoneItem from '../../components/phoneItem'
-import { CardAction } from '../../components/cards'
+import { CardAction, Card } from '../../components/cards'
 import Load from '../../components/load'
 import Button from '../../components/button'
+import Painel from '../../components/painel'
+import logo from '../../logo-cervejaria.svg';
 import HttpService from '../../utils/HttpService'
+import Wrapper from '../../components/wrapper'
+import { ItemImg, ItemDetail, ItemDescription } from '../../components/phoneItem'
+
+
+
 
 class PhonebookDetail extends Component {
 
   state = {
-    phonebook: {},
+    beer: {},
     isLoad: true,
   }
 
@@ -17,25 +23,26 @@ class PhonebookDetail extends Component {
     this.props.history.push('/')
   }
 
-  handleClickNewPhonebook() {
-    this.props.history.push('/new-phonebook')
+  handleClickNewbeer() {
+    this.props.history.push('/new-beer')
   }
 
   handleClickEdit(id) {
-    this.props.history.push(`/phonebook/${id}`)
+    this.props.history.push(`/beer/${id}`)
   }
 
   async getUserData() {
     try {
-      const data = await HttpService.get(`phonebook/${this.props.match.params.phoneId}`)
-      this.setState({phonebook: data})
-    } catch(error){
+      const data = await HttpService.get(`beers/${this.props.match.params.phoneId}`)
+      this.setState({ beer: data })
+    } catch (error) {
       console.error(error)
     } finally {
       this.setState({
         ...this.state,
         isLoad: false
       })
+
     }
   }
 
@@ -44,29 +51,53 @@ class PhonebookDetail extends Component {
   }
 
   render() {
-    const {phonebook: {id, name, email, nickName, phoneNumber, phoneType}, isLoad} = this.state
+    const { name, tagline, first_brewed, description,image_url, id } = this.state.beer
+    console.log(this.state.beer)
+    
     return (
       <>
-        {isLoad ? (
+        {this.state.isLoad ? (
           <Load />
-        ):(
-          <>
-          <Header title={name}>
-            <Button variant='primary' onClick={()=> this.handleClickNewPhonebook() }>Novo Contato</Button> 
-          </Header>
-          <PhoneItem 
-            name={nickName}
-            number={phoneNumber}
-            email={email}
-            phoneType={phoneType}
-          >
-            <CardAction>
-              <Button onClick={()=> this.handleClickBack()}>Voltar</Button>
-              <Button variant="primary"  onClick={()=> this.handleClickEdit(id)}> Editar</Button>
-            </CardAction>
-          </PhoneItem>
-          </>
-        )}
+        ) : (
+            <>
+              <Header>
+                <div>
+                  <img src={logo} className="logo" />
+                </div>
+              </Header>
+              <Painel title={name}>
+              </Painel>
+              
+              <Wrapper variant="wrapper-flex">
+
+                <ItemImg
+
+                  urlImg={image_url}
+                  nameImg={name}
+
+                >
+                </ItemImg>
+
+                <ItemDetail
+
+                  id={first_brewed}
+                  email={tagline}
+
+                >
+                </ItemDetail>
+                <ItemDescription
+
+                  description={description}
+
+                >
+                  <h2>Descrição:</h2>
+                </ItemDescription>
+                <Wrapper variant="end">
+                      <Button variant="primary" size="large" onClick={() => this.handleClickBack()}>Voltar</Button>
+                </Wrapper>
+              </Wrapper>
+            </>
+          )}
       </>
     );
   }
